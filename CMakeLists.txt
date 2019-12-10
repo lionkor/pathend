@@ -1,3 +1,3 @@
 project(pathend)
-set(CMAKE_CXX_STANDARD 17)
-add_executable(pathend main.cpp)
+set(CMAKE_C_STANDARD 11)
+add_executable(pathend main.c)

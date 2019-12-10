@@ -37,7 +37,7 @@ char* process(char* str)
         begin = strrchr(str, '/');
         if (begin == NULL)
             return str;
-        return begin;
+        return begin + 1;
     }
     return begin + 1;
 }
@@ -83,6 +83,7 @@ int main(int argc, char** argv)
         {
             // path needs to exist in argv now
             printf("%s\n", process(argv[1]));
+            return EXIT_SUCCESS;
         }
     }
 }

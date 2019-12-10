@@ -1,6 +1,6 @@
 # pathend
 
-Minimalist commandline tool to retrieve the "end" of a given path. 
+Minimalist commandline tool to retrieve the "end" of a given path. Same core functionality as `basename`.
 
 Examples: 
 

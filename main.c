@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
 
 static const char* help_string =
     "Usage:\n"
@@ -10,7 +11,11 @@ static const char* help_string =
     "\n"
     "Options:\n"
     "  -h --help  show this help\n"
-    "  -          use stdin for path";
+    "  -          use stdin for path\n"
+    "\n"
+    "Examples:\n"
+    "  * pathend path/to/a/file\n"
+    "  * some_command | pathend -";
 
 void display_help()
 {
@@ -19,6 +24,14 @@ void display_help()
 
 char* process(char* str)
 {
+    // set end after last printable character
+    char* iter = str;
+    while (!iscntrl(*iter))
+    {
+        ++iter;
+    }
+    *(iter) = 0;
+
     char* begin = strrchr(str, '/');
     if (begin == NULL)
     {
@@ -75,7 +88,7 @@ int main(int argc, char** argv)
             }
             else
             {
-                fprintf(stderr, "expected tty. non-tty stdin input is not supported.\n");
+                fprintf(stderr, "could not read stdin.\n");
                 return EXIT_FAILURE;
             }
         }
